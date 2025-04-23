@@ -19,5 +19,9 @@ divs.forEach((div) => {
 });
 
 function capitalize(s) {
-  return String(s[0]).toUpperCase() + String(s).slice(1) || '';
+  if (!s || s === '') {
+    return;
+  }
+
+  return String(s[0]).toUpperCase() + String(s).slice(1);
 }
