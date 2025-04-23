@@ -1,27 +1,23 @@
 'use strict';
 
-const inputs = [...document.querySelectorAll('input')];
 const divs = [...document.querySelectorAll('div')];
-let count = 0;
 
-divs.forEach((div, index) => {
+divs.forEach((div) => {
   const newLabel = document.createElement('label');
 
   if (div.classList.contains('field')) {
+    const input = div.querySelector('input');
+
     const label = div.insertAdjacentElement('afterbegin', newLabel);
 
     label.classList.add('field-label');
-    label.setAttribute('for', inputs[count].id);
-    label.textContent = inputs[count].name;
+    label.setAttribute('for', input.id);
+    label.textContent = input.name;
 
-    count++;
+    input.setAttribute('placeholder', capitalize(input.name));
   }
 });
 
-inputs.forEach((input) => {
-  input.setAttribute('placeholder', capitalize(input.name));
-});
-
 function capitalize(s) {
-  return String(s[0]).toUpperCase() + String(s).slice(1);
+  return String(s[0]).toUpperCase() + String(s).slice(1) || '';
 }
